@@ -13,12 +13,7 @@ function useFetch(url, body = null) {
       setLoading(true);
       try {
         const options = {
-          method: body ? "POST" : "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // Additional headers can go here if needed
-          },
-          body: body ? JSON.stringify({ query: body }) : null,
+          method: "GET",
         };
 
         const response = await fetch(

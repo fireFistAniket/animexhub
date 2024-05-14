@@ -5,14 +5,16 @@ import Loader from "../components/Loader";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [topAirAnime, setTopAirAnime] = useState([]);
+  const [topAirManga, setTopAirManga] = useState([]);
   const {
-    data: topAirAnime,
+    data: topAirAnimeData,
     loading: topAirAnimeLoading,
     error: topAirAnimeError,
   } = useFetch("/recommendations/anime");
 
   const {
-    data: topAirManga,
+    data: topAirMangaData,
     loading: topAirMangaLoading,
     error: topAirMangaError,
   } = useFetch("/recommendations/manga");
@@ -48,6 +50,8 @@ const Home = () => {
     if (topAirAnimeLoading && topAirMangaLoading) {
       setIsLoading(true);
     } else {
+      setTopAirAnime(topAirAnimeData);
+      setTopAirManga(topAirMangaData);
       setIsLoading(false);
     }
   }, [topAirAnimeLoading, topAirMangaLoading]);
