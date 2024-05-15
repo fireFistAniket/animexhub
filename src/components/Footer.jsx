@@ -54,19 +54,25 @@ const Footer = () => {
         </div>
         <div className="flex items-center">
           <Link
-            to="/"
+            to="https://www.instagram.com/code_n_creativity?igsh=MWRzcWVyMmIxMnIyZw%3D%3D&utm_source=qr"
+            target="_blank"
+            referrerPolicy="no-referrer"
             className="text-[2.5vmax] h-full flex items-center justify-center px-[2vmin] border-l border-r hover:border-l-0 hover:border-r-0 hover:bg-[radial-gradient(circle_at_30%_107%,_#fdf497_0%,_#fdf497_5%,_#fd5949_45%,_#d6249f_60%,_#285AEB_90%)] text-neutral-400 hover:text-neutral-100"
           >
             <FiInstagram />
           </Link>
           <Link
-            to="/"
+            to="https://pin.it/1BlLf76p2"
+            target="_blank"
+            referrerPolicy="no-referrer"
             className="text-[2.5vmax] h-full flex items-center justify-center px-[2vmin] border-l border-r hover:border-l-0 hover:border-r-0 hover:bg-red-600 text-neutral-400 hover:text-neutral-100"
           >
             <FaPinterest />
           </Link>
           <Link
-            to="/"
+            to="https://www.linkedin.com/in/code-n-creativity-189087307?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            target="_blank"
+            referrerPolicy="no-referrer"
             className="text-[2.5vmax] h-full flex items-center justify-center px-[2vmin] border-l border-r hover:border-l-0 hover:border-r-0 hover:bg-blue-600 text-neutral-400 hover:text-neutral-100"
           >
             <FaLinkedinIn />

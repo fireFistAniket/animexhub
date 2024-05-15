@@ -28,7 +28,7 @@ const Navbar = () => {
           <li className="capitalize font-medium text-[1.3vmax] relative group">
             <div className="group-hover:text-[--primary] flex flex-col items-center cursor-pointer text-neutral-400">
               <p>anime</p>
-              <FaChevronDown className="text-[1vmax]" />
+              <FaChevronDown className="text-[0.8vmax]" />
             </div>
             <div className="absolute top-full -left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100 hidden group-hover:flex delay-150 transition duration-300 ease-in-out border border-[--primary] px-[1vmax] py-[1vmin] rounded-lg rounded-tr-none shadow flex-col gap-[1.2vmin] bg-white bg-opacity-65">
               <p className="whitespace-nowrap hover:text-[--primary]">
@@ -37,12 +37,15 @@ const Navbar = () => {
               <p className="whitespace-nowrap hover:text-[--primary]">
                 recent anime
               </p>
+              <p className="whitespace-nowrap hover:text-[--primary]">
+                schedule anime
+              </p>
             </div>
           </li>
           <li className="capitalize font-medium text-[1.3vmax] relative group">
             <div className="group-hover:text-[--primary] flex flex-col items-center cursor-pointer text-neutral-400">
               <p>manga</p>
-              <FaChevronDown className="text-[1vmax]" />
+              <FaChevronDown className="text-[0.8vmax]" />
             </div>
             <div className="absolute top-full -left-1/2 opacity-0 group-hover:opacity-100 hidden group-hover:flex delay-150 transition duration-300 ease-in-out border border-[--primary] px-[1vmax] py-[1vmin] rounded-lg rounded-tr-none shadow flex-col gap-[1.2vmin] bg-white bg-opacity-65">
               <p className="whitespace-nowrap hover:text-[--primary]">
@@ -52,6 +55,9 @@ const Navbar = () => {
                 recent manga
               </p>
             </div>
+          </li>
+          <li className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400">
+            magazines
           </li>
           <li className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400">
             reviews
