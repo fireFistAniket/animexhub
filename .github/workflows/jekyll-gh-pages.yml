@@ -15,6 +15,8 @@ permissions:
 concurrency:
   group: 'pages'
   cancel-in-progress: true
+env:
+  VITE_API_URI: "https://api.jikan.moe/v4"
 jobs:
   # Single deploy job since we're just deploying
   deploy:
@@ -28,7 +30,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
       - name: Install dependencies
         run: npm install
