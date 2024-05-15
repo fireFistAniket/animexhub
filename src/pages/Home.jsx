@@ -1,12 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import useFetch from "../hooks/useFetch";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Loader from "../components/Loader";
+
+const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
+const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [topAirAnime, setTopAirAnime] = useState([]);
   const [topAirManga, setTopAirManga] = useState([]);
+  const [isLoaded, setIsLoaded] = useState({
+    aboutus: false,
+    expect1: false,
+    expect2: false,
+    expect3: false,
+  });
+  const [isInView, setIsInView] = useState({
+    aboutus: false,
+    expect1: false,
+    expect2: false,
+    expect3: false,
+  });
   const {
     data: topAirAnimeData,
     loading: topAirAnimeLoading,
@@ -56,27 +72,33 @@ const Home = () => {
     }
   }, [topAirAnimeLoading, topAirMangaLoading]);
 
+
   return (
-    <main className="flex flex-col justify-center gap-[4vmax]">
+    <main className='flex flex-col justify-center gap-[4vmax]'>
       <div className="bg-[url('/hero-header-bg.png')] bg-no-repeat bg-cover bg-center min-h-[80vh] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-[4vmin] max-w-[60vmax] bg-white bg-opacity-40 px-[2vmax] py-[2vmin] backdrop-blur-sm rounded-lg shadow">
-          <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
-            Hi, Welcome to <span className="font-bold">AnimeXhuB</span>
+        <motion.div
+          className='flex flex-col items-center gap-[4vmin] max-w-[60vmax] bg-white bg-opacity-40 px-[2vmax] py-[2vmin] backdrop-blur-sm rounded-lg shadow'
+          initial={{ scale: 0.2 }}
+          transition={{ duration: 1 }}
+          whileInView={{ scale: 1 }}
+        >
+          <h1 className='text-[2.5vmax] font-semibold text-neutral-900'>
+            Hi, Welcome to <span className='font-bold'>AnimeXhuB</span>
           </h1>
-          <p className="text-center text-[1.8vmax] font-medium text-neutral-900">
+          <p className='text-center text-[1.8vmax] font-medium text-neutral-900'>
             AnimeXhuB welcomes visitors with stunning anime imagery, offering a
             captivating glimpse into the world of anime. Featuring vibrant
             colors and dynamic designs, it sets the stage for an immersive anime
             experience.
           </p>
-        </div>
+        </motion.div>
       </div>
-      <div className="flex items-center justify-center mx-[3vmax] my-[3vmin] gap-[4vmin]">
-        <div className="flex flex-col items-center gap-[4vmin] max-w-[55vmax]">
-          <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
-            What is <span className="font-bold">AnimeXhub</span>?
+      <div className='flex items-center justify-center mx-[3vmax] my-[3vmin] gap-[4vmin]'>
+        <div className='flex flex-col items-center gap-[4vmin] max-w-[55vmax]'>
+          <h1 className='text-[2.5vmax] font-semibold text-neutral-900'>
+            What is <span className='font-bold'>AnimeXhub</span>?
           </h1>
-          <p className="text-center text-[1.8vmax] font-medium text-neutral-900">
+          <p className='text-center text-[1.8vmax] font-medium text-neutral-900'>
             AnimeXhuB is a passionate community-driven platform dedicated to all
             things anime. Our mission is to celebrate the artistry,
             storytelling, and culture of anime, bringing fans together to
@@ -86,19 +108,34 @@ const Home = () => {
             journey to explore the endless wonders of the anime universe!
           </p>
         </div>
-        <img
-          src="/animexhub/about-us-cover.jpg"
-          alt="about us"
-          className="max-h-[80vmin] shadow-xl rounded-lg"
-        />
+        <motion.div
+          initial={false}
+          animate={
+            isLoaded.aboutus && isInView.aboutus
+              ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+              : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+          }
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          onViewportEnter={() =>
+            setIsInView((prev) => ({ ...prev, aboutus: true }))
+          }
+        >
+          <img
+            src='/animexhub/about-us-cover.jpg'
+            alt='about us'
+            className='max-h-[80vmin] shadow-xl rounded-lg'
+            onLoad={() => setIsLoaded((prev) => ({ ...prev, aboutus: true }))}
+          />
+        </motion.div>
       </div>
-      <div className="flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]">
-        <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
+      <div className='flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]'>
+        <h1 className='text-[2.5vmax] font-semibold text-neutral-900'>
           List of some top Airing animes till dates
         </h1>
-        <div className="relative group">
+        <div className='relative group'>
           <div
-            className="flex items-center gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
+            className='flex items-center gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth'
             ref={animeScrollContainer}
           >
             {isLoading ? (
@@ -107,7 +144,7 @@ const Home = () => {
               topAirAnime?.data?.slice(0, 10).map((item) =>
                 item.entry.map((animes) => (
                   <div
-                    className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
+                    className='flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]'
                     key={animes.id}
                   >
                     <img
@@ -115,12 +152,12 @@ const Home = () => {
                         animes.images.jpg.large_image_url ||
                         animes.images.jpg.image_url
                       }
-                      alt="anime cover"
+                      alt='anime cover'
                       width={500}
                       height={500}
-                      className="w-full h-auto inline-block rounded-lg"
+                      className='w-full h-auto inline-block rounded-lg'
                     />
-                    <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
+                    <p className='text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full'>
                       {animes.title}
                     </p>
                   </div>
@@ -130,51 +167,85 @@ const Home = () => {
           </div>
           <button
             onClick={animeScrollLeft}
-            className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 left-0 hidden md:group-hover:inline-block rounded-lg"
-            type="button"
+            className='text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 left-0 hidden md:group-hover:inline-block rounded-lg'
+            type='button'
           >
-            <FaChevronLeft className="opacity-60 hover:opacity-100" />
+            <FaChevronLeft className='opacity-60 hover:opacity-100' />
           </button>
           <button
             onClick={animeScrollRight}
-            className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 right-0 hidden md:group-hover:inline-block rounded-lg"
-            type="button"
+            className='text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 right-0 hidden md:group-hover:inline-block rounded-lg'
+            type='button'
           >
-            <FaChevronRight className="opacity-60 hover:opacity-100" />
+            <FaChevronRight className='opacity-60 hover:opacity-100' />
           </button>
         </div>
         <button
-          type="button"
-          className="text-[1.2vmax] capitalize border hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#f97316,0_0_15px_#f97316,0_0_30px_#f97316] transition duration-300 bg-orange-500 text-neutral-100 rounded-xl border-orange-500 px-[2vmax] py-[2vmin] self-center"
+          type='button'
+          className='text-[1.2vmax] capitalize border hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#f97316,0_0_15px_#f97316,0_0_30px_#f97316] transition duration-300 bg-orange-500 text-neutral-100 rounded-xl border-orange-500 px-[2vmax] py-[2vmin] self-center'
         >
           explore all
         </button>
       </div>
-      <div className="flex flex-col items-center gap-[4vmin] my-[3vmin] mx-[3vmax]">
-        <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
+      <div className='flex flex-col items-center gap-[4vmin] my-[3vmin] mx-[3vmax]'>
+        <h1 className='text-[2.5vmax] font-semibold text-neutral-900'>
           What can you expect from us!
         </h1>
-        <div className="flex flex-col items-center gap-[4vmin]">
-          <div className="flex items-center">
-            <p className="text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]">
+        <div className='flex flex-col items-center gap-[4vmin]'>
+          <div className='flex items-center'>
+            <p className='text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]'>
               Immerse yourself in the captivating world of anime with AnimeXhuB.
               Explore a vast collection of anime series, movies, and OVA
               episodes. From timeless classics to the latest releases, AnimeXhuB
               is your gateway to endless anime entertainment.
             </p>
-            <img
-              src="/animexhub/what-can-you-expect-cover1.jpg"
-              alt="what-can-you-expect-cover"
-              className="max-h-[70vmin] shadow-xl rounded-lg"
-            />
+            <motion.div
+              initial={false}
+              animate={
+                isLoaded.expect1 && isInView.expect1
+                  ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+                  : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+              }
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              onViewportEnter={() =>
+                setIsInView((prev) => ({ ...prev, expect1: true }))
+              }
+            >
+              <img
+                src='/animexhub/what-can-you-expect-cover1.jpg'
+                alt='what-can-you-expect-cover'
+                className='max-h-[70vmin] shadow-xl rounded-lg'
+                onLoad={() =>
+                  setIsLoaded((prev) => ({ ...prev, expect1: true }))
+                }
+              />
+            </motion.div>
           </div>
-          <div className="flex items-center">
-            <img
-              src="/animexhub/what-can-you-expect-cover2.jpg"
-              alt="what-can-you-expect-cover"
-              className="max-h-[70vmin] shadow-xl rounded-lg"
-            />
-            <p className="text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]">
+          <div className='flex items-center'>
+            <motion.div
+              initial={false}
+              animate={
+                isLoaded.expect2 && isInView.expect2
+                  ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+                  : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+              }
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              onViewportEnter={() =>
+                setIsInView((prev) => ({ ...prev, expect2: true }))
+              }
+            >
+              <img
+                src='/animexhub/what-can-you-expect-cover2.jpg'
+                alt='what-can-you-expect-cover'
+                className='max-h-[70vmin] shadow-xl rounded-lg'
+                onLoad={() =>
+                  setIsLoaded((prev) => ({ ...prev, expect2: true }))
+                }
+              />
+            </motion.div>
+            <p className='text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]'>
               Step into the exciting realm of manga with AnimeXhuB. Discover a
               treasure trove of manga titles, from beloved classics to the
               hottest new releases. Dive into captivating stories, vibrant
@@ -182,29 +253,46 @@ const Home = () => {
               hours.
             </p>
           </div>
-          <div className="flex items-center">
-            <p className="text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]">
+          <div className='flex items-center'>
+            <p className='text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]'>
               Join a thriving community of anime and manga enthusiasts on
               AnimeXhuB. Share your passion, discuss your favorite series, and
               connect with like-minded fans from around the world. Stay updated
               on the latest news, trends, and discussions in the anime and manga
               community.
             </p>
-            <img
-              src="/animexhub/what-can-you-expect-cover3.jpg"
-              alt="what-can-you-expect-cover"
-              className="max-h-[70vmin] shadow-xl rounded-lg"
-            />
+            <motion.div
+              initial={false}
+              animate={
+                isLoaded.expect3 && isInView.expect3
+                  ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+                  : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+              }
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              onViewportEnter={() =>
+                setIsInView((prev) => ({ ...prev, expect3: true }))
+              }
+            >
+              <img
+                src='/animexhub/what-can-you-expect-cover3.jpg'
+                alt='what-can-you-expect-cover'
+                className='max-h-[70vmin] shadow-xl rounded-lg'
+                onLoad={() =>
+                  setIsLoaded((prev) => ({ ...prev, expect3: true }))
+                }
+              />
+            </motion.div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]">
-        <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
+      <div className='flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]'>
+        <h1 className='text-[2.5vmax] font-semibold text-neutral-900'>
           List of some top Airing mangas till dates
         </h1>
-        <div className="relative group">
+        <div className='relative group'>
           <div
-            className="flex items-center gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
+            className='flex items-center gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth'
             ref={mangaScrollContainer}
           >
             {isLoading ? (
@@ -213,7 +301,7 @@ const Home = () => {
               topAirManga?.data?.slice(0, 10).map((item) =>
                 item.entry.map((animes) => (
                   <div
-                    className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
+                    className='flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]'
                     key={animes.id}
                   >
                     <img
@@ -221,12 +309,12 @@ const Home = () => {
                         animes.images.jpg.large_image_url ||
                         animes.images.jpg.image_url
                       }
-                      alt="anime cover"
+                      alt='anime cover'
                       width={500}
                       height={500}
-                      className="w-full h-auto inline-block rounded-lg"
+                      className='w-full h-auto inline-block rounded-lg'
                     />
-                    <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
+                    <p className='text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full'>
                       {animes.title}
                     </p>
                   </div>
@@ -236,43 +324,43 @@ const Home = () => {
           </div>
           <button
             onClick={mangaScrollLeft}
-            className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 left-0 hidden md:group-hover:inline-block rounded-lg"
-            type="button"
+            className='text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 left-0 hidden md:group-hover:inline-block rounded-lg'
+            type='button'
           >
-            <FaChevronLeft className="opacity-60 hover:opacity-100" />
+            <FaChevronLeft className='opacity-60 hover:opacity-100' />
           </button>
           <button
             onClick={mangaScrollRight}
-            className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 right-0 hidden md:group-hover:inline-block rounded-lg"
-            type="button"
+            className='text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 right-0 hidden md:group-hover:inline-block rounded-lg'
+            type='button'
           >
-            <FaChevronRight className="opacity-60 hover:opacity-100" />
+            <FaChevronRight className='opacity-60 hover:opacity-100' />
           </button>
         </div>
         <button
-          type="button"
-          className="text-[1.2vmax] capitalize border hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#f97316,0_0_15px_#f97316,0_0_30px_#f97316] transition duration-300 bg-orange-500 text-neutral-100 rounded-xl border-orange-500 px-[2vmax] py-[2vmin] self-center"
+          type='button'
+          className='text-[1.2vmax] capitalize border hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#f97316,0_0_15px_#f97316,0_0_30px_#f97316] transition duration-300 bg-orange-500 text-neutral-100 rounded-xl border-orange-500 px-[2vmax] py-[2vmin] self-center'
         >
           explore all
         </button>
       </div>
       <div className="bg-[url('/newsletter-bg.jpg')] bg-no-repeat bg-cover bg-center">
-        <div className="flex flex-col items-center justify-center bg-black bg-opacity-70 gap-[2vmax] min-h-[40vh]">
-          <h1 className="text-[2vmax] font-bold text-neutral-300">
+        <div className='flex flex-col items-center justify-center bg-black bg-opacity-70 gap-[2vmax] min-h-[40vh]'>
+          <h1 className='text-[2vmax] font-bold text-neutral-300'>
             Not done yet. There is still many more.
           </h1>
-          <p className="text-[1.6vmax] font-medium text-neutral-300">
+          <p className='text-[1.6vmax] font-medium text-neutral-300'>
             Subscribe to our newsletter in order to get in touch with us.
           </p>
-          <div className="flex items-center border border-neutral-600 px-[2vmax] py-[1vmin] rounded-3xl bg-neutral-700 bg-opacity-50">
+          <div className='flex items-center border border-neutral-600 px-[2vmax] py-[1vmin] rounded-3xl bg-neutral-700 bg-opacity-50'>
             <input
-              type="email"
-              placeholder="Enter your email"
-              className="bg-transparent focus:outline-none text-neutral-300"
+              type='email'
+              placeholder='Enter your email'
+              className='bg-transparent focus:outline-none text-neutral-300'
             />
             <button
-              type="button"
-              className="rounded-3xl bg-neutral-700 bg-opacity-50 capitalize text-neutral-300"
+              type='button'
+              className='rounded-3xl bg-neutral-700 bg-opacity-50 capitalize text-neutral-300'
             >
               subscribe
             </button>
