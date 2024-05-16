@@ -22,10 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# enviroment
-.env
-
-yarn.lock
-package-lock.json
-.vercel
