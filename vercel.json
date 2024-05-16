@@ -18,12 +18,12 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/Backend/src/main.ts"
+      "src": "/",
+      "dest": "/Frontend/dist/index.html"
     },
     {
-      "src": "/",
-      "dest": "/Frontend/index.html"
+      "src": "/api/(.*)",
+      "dest": "/Backend/src/main.ts"
     }
   ]
 }
