@@ -36,7 +36,6 @@ if (!isProduction) {
   app.use(compression());
   app.use(base, sirv("./dist/client", { extensions: [] }));
 }
-
 app.use("/api", async (req, res) => {
   await fastify.ready();
   fastify.server.emit("request", req, res);
