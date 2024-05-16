@@ -19,11 +19,11 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "Backend/src/main.ts"
+      "dest": "/Backend/src/main.ts"
     },
     {
       "src": "/",
-      "dest": "Frontend/index.html"
+      "dest": "/Frontend/index.html"
     }
   ]
 }
