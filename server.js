@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import express from "express";
-import backendApi from "./api/dist/main.js";
+import backendApi from "./api/api/main.js";
 
 const { fastify } = backendApi;
 
