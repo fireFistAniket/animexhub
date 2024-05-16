@@ -10,16 +10,13 @@
     },
     {
       "src": "Backend/src/main.ts",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["dist/**/*"]
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/Frontend/dist/index.html"
+      "dest": "/Frontend/index.html"
     },
     {
       "src": "/api/(.*)",
