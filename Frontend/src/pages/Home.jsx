@@ -122,7 +122,7 @@ const Home = () => {
           }
         >
           <img
-            src="/animexhub/about-us-cover.jpg"
+            src="/about-us-cover.jpg"
             alt="about us"
             className="max-h-[80vmin] shadow-xl rounded-lg"
             onLoad={() => setIsLoaded((prev) => ({ ...prev, aboutus: true }))}
@@ -208,7 +208,7 @@ const Home = () => {
               }
             >
               <img
-                src="/animexhub/what-can-you-expect-cover1.jpg"
+                src="/what-can-you-expect-cover1.jpg"
                 alt="what-can-you-expect-cover"
                 className="max-h-[70vmin] shadow-xl rounded-lg"
                 onLoad={() =>
@@ -232,7 +232,7 @@ const Home = () => {
               }
             >
               <img
-                src="/animexhub/what-can-you-expect-cover2.jpg"
+                src="/what-can-you-expect-cover2.jpg"
                 alt="what-can-you-expect-cover"
                 className="max-h-[70vmin] shadow-xl rounded-lg"
                 onLoad={() =>
@@ -270,7 +270,7 @@ const Home = () => {
               }
             >
               <img
-                src="/animexhub/what-can-you-expect-cover3.jpg"
+                src="/what-can-you-expect-cover3.jpg"
                 alt="what-can-you-expect-cover"
                 className="max-h-[70vmin] shadow-xl rounded-lg"
                 onLoad={() =>

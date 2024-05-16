@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between bg-black bg-opacity-70 px-[1.5vmax] py-[1.5vmin] w-full">
         <Link to="/" className="flex items-center gap-[1.5vmax]">
           <img
-            src="/animexhub/logo.png"
+            src="/logo.png"
             alt="AnimeXhuB"
             width={450}
             height={200}
