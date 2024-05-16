@@ -16,8 +16,8 @@
       "dest": "Backend/src/main.ts"
     },
     {
-      "src": "/(.*)",
-      "dest": "Frontend/package.json"
+      "src": "(.*)",
+      "dest": "Frontend/index.html"
     }
   ]
 }
