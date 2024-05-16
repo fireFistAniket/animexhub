@@ -19,7 +19,7 @@
       "dest": "Backend/src/main.ts"
     },
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "Frontend/dist/index.html"
     }
   ]
