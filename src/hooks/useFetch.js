@@ -17,11 +17,11 @@ function useFetch(url, body = null) {
         };
 
         const response = await fetch(
-          `/api${url}`,
+          `${import.meta.env.VITE_API_URI}${url}`,
           options
         );
         const responseData = await response.json();
-
+        console.log(responseData);
         setData(responseData);
         setError(null);
       } catch (err) {

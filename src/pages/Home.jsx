@@ -9,8 +9,8 @@ const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [topAirAnime, setTopAirAnime] = useState([]);
-  const [scheduleAnime, setScheduleAnime] = useState([]);
+  const [topTrendingAnime, setTopTrendingAnime] = useState([]);
+  const [topTrendingManga, setTopTrendingManga] = useState([]);
 
   const [isLoaded, setIsLoaded] = useState({
     aboutus: false,
@@ -18,6 +18,7 @@ const Home = () => {
     expect2: false,
     expect3: false,
   });
+  
   const [isInView, setIsInView] = useState({
     aboutus: false,
     expect1: false,
@@ -25,16 +26,16 @@ const Home = () => {
     expect3: false,
   });
   const {
-    data: topAirAnimeData,
-    loading: topAirAnimeLoading,
-    error: topAirAnimeError,
-  } = useFetch("/meta/anilist/trending");
+    data: topTrendingAnimeData,
+    loading: topTrendingAnimeLoading,
+    error: topTrendingAnimeError,
+  } = useFetch("/trending/anime");
 
   const {
-    data: scheduleAnimeData,
-    loading: scheduleAnimeLoading,
-    error: scheduleAnimeError,
-  } = useFetch("/meta/anilist/airing-schedule");
+    data: topTrendingMangaData,
+    loading: topTrendingMangaLoading,
+    error: topTrendingMangaError,
+  } = useFetch("/trending/manga");
 
   const animeScrollContainer = useRef(null);
   const mangaScrollContainer = useRef(null);
@@ -64,14 +65,14 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (topAirAnimeLoading && scheduleAnimeLoading) {
+    if (topTrendingAnimeLoading && topTrendingMangaLoading) {
       setIsLoading(true);
     } else {
-      setTopAirAnime(topAirAnimeData);
-      setScheduleAnime(scheduleAnimeData);
+      setTopTrendingAnime(topTrendingAnimeData);
+      setTopTrendingManga(topTrendingMangaData);
       setIsLoading(false);
     }
-  }, [topAirAnimeLoading, scheduleAnimeLoading]);
+  }, [topTrendingAnimeLoading, topTrendingMangaLoading]);
 
   return (
     <main className="flex flex-col justify-center gap-[4vmax]">
@@ -122,7 +123,7 @@ const Home = () => {
           }
         >
           <img
-            src="/about-us-cover.jpg"
+            src="/animexhub/about-us-cover.jpg"
             alt="about us"
             className="max-h-[80vmin] shadow-xl rounded-lg"
           />
@@ -130,7 +131,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]">
         <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
-          List of some top Airing animes till dates
+          List of some top Trending animes till dates
         </h1>
         <div className="relative group">
           <div
@@ -140,20 +141,20 @@ const Home = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              topAirAnime?.results?.slice(0, 10).map((animes) => (
+              topTrendingAnime?.data?.slice(0, 10).map((animes) => (
                 <div
                   className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
                   key={animes.id}
                 >
                   <img
-                    src={animes.image}
+                    src={animes.attributes.posterImage?.original}
                     alt="anime cover"
                     width={500}
                     height={500}
                     className="w-full h-auto inline-block rounded-lg"
                   />
                   <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
-                    {animes.title.english}
+                    {animes.attributes.titles.en}
                   </p>
                 </div>
               ))
@@ -207,7 +208,7 @@ const Home = () => {
               }
             >
               <img
-                src="/what-can-you-expect-cover1.jpg"
+                src="/animexhub/what-can-you-expect-cover1.jpg"
                 alt="what-can-you-expect-cover"
                 className="max-h-[70vmin] shadow-xl rounded-lg"
               />
@@ -228,7 +229,7 @@ const Home = () => {
               }
             >
               <img
-                src="/what-can-you-expect-cover2.jpg"
+                src="/animexhub/what-can-you-expect-cover2.jpg"
                 alt="what-can-you-expect-cover"
                 className="max-h-[70vmin] shadow-xl rounded-lg"
               />
@@ -263,7 +264,7 @@ const Home = () => {
               }
             >
               <img
-                src="/what-can-you-expect-cover3.jpg"
+                src="/animexhub/what-can-you-expect-cover3.jpg"
                 alt="what-can-you-expect-cover"
                 className="max-h-[70vmin] shadow-xl rounded-lg"
               />
@@ -283,20 +284,20 @@ const Home = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              scheduleAnime?.results?.slice(0, 10).map((animes) => (
+              topTrendingManga?.data?.slice(0, 10).map((manga) => (
                 <div
                   className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
-                  key={animes.id}
+                  key={manga.id}
                 >
                   <img
-                    src={animes.image}
+                    src={manga.attributes.posterImage?.original}
                     alt="anime cover"
                     width={500}
                     height={500}
                     className="w-full h-auto inline-block rounded-lg"
                   />
                   <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
-                    {animes.title.english}
+                    {manga.attributes.titles.en}
                   </p>
                 </div>
               ))

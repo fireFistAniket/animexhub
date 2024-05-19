@@ -12,7 +12,7 @@ const Footer = () => {
           <div className='flex items-center gap-[2vmax]'>
             <div className='flex items-center gap-[1.5vmax]'>
               <img
-                src='/logo.png'
+                src='/animexhub/logo.png'
                 alt='AnimeXhuB'
                 width={450}
                 height={200}
