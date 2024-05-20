@@ -11,14 +11,16 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [topTrendingAnime, setTopTrendingAnime] = useState([]);
   const [topTrendingManga, setTopTrendingManga] = useState([]);
+  const [reactions, setReactions] = useState([]);
 
   const [isInView, setIsInView] = useState({
     aboutus: false,
     expect1: false,
     expect2: false,
     expect3: false,
+    whyUs: false,
   });
-  
+
   const {
     data: topTrendingAnimeData,
     loading: topTrendingAnimeLoading,
@@ -31,42 +33,38 @@ const Home = () => {
     error: topTrendingMangaError,
   } = useFetch("/trending/manga");
 
+  const {
+    data: reactionData,
+    loading: reactionLoading,
+    error: reactionError,
+  } = useFetch("/media-reactions?include=user,anime,manga");
+
   const animeScrollContainer = useRef(null);
   const mangaScrollContainer = useRef(null);
+  const reactionScrollContainer = useRef(null);
 
-  const animeScrollLeft = () => {
-    if (animeScrollContainer.current) {
-      animeScrollContainer.current.scrollLeft -= 250; 
+  const scrollLeft = (scrollRef) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft -= 250;
     }
   };
 
-  const animeScrollRight = () => {
-    if (animeScrollContainer.current) {
-      animeScrollContainer.current.scrollLeft += 250; 
-    }
-  };
-
-  const mangaScrollLeft = () => {
-    if (mangaScrollContainer.current) {
-      mangaScrollContainer.current.scrollLeft -= 250; 
-    }
-  };
-
-  const mangaScrollRight = () => {
-    if (mangaScrollContainer.current) {
-      mangaScrollContainer.current.scrollLeft += 250; 
+  const scrollRight = (scrollRef) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += 250;
     }
   };
 
   useEffect(() => {
-    if (topTrendingAnimeLoading && topTrendingMangaLoading) {
+    if (topTrendingAnimeLoading && topTrendingMangaLoading && reactionLoading) {
       setIsLoading(true);
     } else {
       setTopTrendingAnime(topTrendingAnimeData);
       setTopTrendingManga(topTrendingMangaData);
+      setReactions(reactionData);
       setIsLoading(false);
     }
-  }, [topTrendingAnimeLoading, topTrendingMangaLoading]);
+  }, [topTrendingAnimeLoading, topTrendingMangaLoading, reactionLoading]);
 
   return (
     <main className="flex flex-col justify-center gap-[4vmax]">
@@ -155,14 +153,14 @@ const Home = () => {
             )}
           </div>
           <button
-            onClick={animeScrollLeft}
+            onClick={() => scrollLeft(animeScrollContainer)}
             className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 left-0 hidden md:group-hover:inline-block rounded-lg"
             type="button"
           >
             <FaChevronLeft className="opacity-60 hover:opacity-100" />
           </button>
           <button
-            onClick={animeScrollRight}
+            onClick={() => scrollRight(animeScrollContainer)}
             className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 right-0 hidden md:group-hover:inline-block rounded-lg"
             type="button"
           >
@@ -298,14 +296,14 @@ const Home = () => {
             )}
           </div>
           <button
-            onClick={mangaScrollLeft}
+            onClick={() => scrollLeft(mangaScrollContainer)}
             className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 left-0 hidden md:group-hover:inline-block rounded-lg"
             type="button"
           >
             <FaChevronLeft className="opacity-60 hover:opacity-100" />
           </button>
           <button
-            onClick={mangaScrollRight}
+            onClick={() => scrollRight(mangaScrollContainer)}
             className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 right-0 hidden md:group-hover:inline-block rounded-lg"
             type="button"
           >
@@ -319,6 +317,112 @@ const Home = () => {
           explore all
         </button>
       </div>
+      <div className="flex flex-col items-center gap-[4vmin] my-[3vmin] mx-[3vmax]">
+        <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
+          Why Anime lovers preferred our reviews &amp; reviews!
+        </h1>
+        <div className="flex items-center">
+          <div className="flex items-start flex-col gap-[2vmin]">
+            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+              AnimeXhub utilizes the powerful Kitsu API to provide a vast and
+              constantly updated library of anime titles. Our extensive
+              collection ensures you&apos;ll always find something new and
+              exciting to watch.
+            </p>
+            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+              We&apos;ve organized our content to be visually appealing and easy
+              to navigate. With intuitive categories, advanced search options,
+              and personalized recommendations, finding your next favorite anime
+              has never been easier. Our clean, modern design enhances your
+              browsing experience.
+            </p>
+            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+              Each anime title on AnimeXhub comes with a detailed profile,
+              including synopses, genre classifications, episode guides, and
+              user reviews. This wealth of information helps you make informed
+              decisions about what to watch next.
+            </p>
+            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+              We&apos;re committed to providing the best possible experience for
+              our users. That&apos;s why we continuously update our platform
+              with new features, improvements, and the latest anime releases.
+            </p>
+          </div>
+          <motion.div
+            initial={false}
+            animate={
+              isInView.whyUs
+                ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+                : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+            }
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            onViewportEnter={() =>
+              setIsInView((prev) => ({ ...prev, whyUs: true }))
+            }
+          >
+            <img
+              src="/animexhub/why-us.png"
+              alt="what-can-you-expect-cover"
+              className="max-h-[70vmin] shadow-xl rounded-lg"
+            />
+          </motion.div>
+        </div>
+      </div>
+      {/* <div className="flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]">
+        <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
+          List of some top trending manga this week.
+        </h1>
+        <div className="relative group">
+          <div
+            className="flex items-center gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
+            ref={reactionScrollContainer}
+          >
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                {reactions?.included?.map(
+                  (item) =>
+                    item.type === "users" && (
+                      <div key={item.id}>{item.attributes.name}</div>
+                    )
+                )}
+                {reactions?.data?.slice(0, 10).map((reaction) => (
+                  <div
+                    className="flex items-stretch relative flex-shrink flex-grow basis-[25vmax] bg-black bg-opacity-50"
+                    key={reaction.id}
+                  >
+                    <p className="text-[1.5vmax] font-bold  text-neutral-100 text-center w-full">
+                      {reaction.attributes.reaction}
+                    </p>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+          <button
+            onClick={() => scrollLeft(reactionScrollContainer)}
+            className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 left-0 hidden md:group-hover:inline-block rounded-lg"
+            type="button"
+          >
+            <FaChevronLeft className="opacity-60 hover:opacity-100" />
+          </button>
+          <button
+            onClick={() => scrollRight(reactionScrollContainer)}
+            className="text-[4vmax] text-neutral-100 bg-black bg-opacity-60 h-full absolute top-0 right-0 hidden md:group-hover:inline-block rounded-lg"
+            type="button"
+          >
+            <FaChevronRight className="opacity-60 hover:opacity-100" />
+          </button>
+        </div>
+        <button
+          type="button"
+          className="text-[1.2vmax] capitalize border hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#f97316,0_0_15px_#f97316,0_0_30px_#f97316] transition duration-300 bg-orange-500 text-neutral-100 rounded-xl border-orange-500 px-[2vmax] py-[2vmin] self-center"
+        >
+          explore all
+        </button>
+      </div> */}
       <motion.div
         className="bg-[url('/newsletter-bg.jpg')] bg-no-repeat bg-center"
         initial={{ backgroundSize: "0%" }}
