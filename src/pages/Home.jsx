@@ -18,7 +18,7 @@ const Home = () => {
     expect2: false,
     expect3: false,
   });
-  
+
   const [isInView, setIsInView] = useState({
     aboutus: false,
     expect1: false,
@@ -274,7 +274,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]">
         <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
-          List of some scheduled anime which will going to release in this week.
+          List of some top trending manga this week.
         </h1>
         <div className="relative group">
           <div
