@@ -319,7 +319,7 @@ const Home = () => {
       </div>
       <div className="flex flex-col items-center gap-[4vmin] my-[3vmin] mx-[3vmax]">
         <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
-          Why Anime lovers preferred our reviews &amp; reviews!
+          Why Anime lovers preferred our reviews &amp; recommendations!
         </h1>
         <div className="flex items-center">
           <div className="flex items-start flex-col gap-[2vmin]">
