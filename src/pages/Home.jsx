@@ -12,19 +12,13 @@ const Home = () => {
   const [topTrendingAnime, setTopTrendingAnime] = useState([]);
   const [topTrendingManga, setTopTrendingManga] = useState([]);
 
-  const [isLoaded, setIsLoaded] = useState({
-    aboutus: false,
-    expect1: false,
-    expect2: false,
-    expect3: false,
-  });
-
   const [isInView, setIsInView] = useState({
     aboutus: false,
     expect1: false,
     expect2: false,
     expect3: false,
   });
+  
   const {
     data: topTrendingAnimeData,
     loading: topTrendingAnimeLoading,
@@ -42,25 +36,25 @@ const Home = () => {
 
   const animeScrollLeft = () => {
     if (animeScrollContainer.current) {
-      animeScrollContainer.current.scrollLeft -= 250; // Adjust the scroll amount as needed
+      animeScrollContainer.current.scrollLeft -= 250; 
     }
   };
 
   const animeScrollRight = () => {
     if (animeScrollContainer.current) {
-      animeScrollContainer.current.scrollLeft += 250; // Adjust the scroll amount as needed
+      animeScrollContainer.current.scrollLeft += 250; 
     }
   };
 
   const mangaScrollLeft = () => {
     if (mangaScrollContainer.current) {
-      mangaScrollContainer.current.scrollLeft -= 250; // Adjust the scroll amount as needed
+      mangaScrollContainer.current.scrollLeft -= 250; 
     }
   };
 
   const mangaScrollRight = () => {
     if (mangaScrollContainer.current) {
-      mangaScrollContainer.current.scrollLeft += 250; // Adjust the scroll amount as needed
+      mangaScrollContainer.current.scrollLeft += 250; 
     }
   };
 
