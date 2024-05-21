@@ -6,6 +6,7 @@ import React from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import PrivacyPollicy from "./pages/PrivacyPolicy";
 import Home from "./pages/Home";
+import CategoryDetails from "./pages/CategoryDetails";
 
 function App() {
   const element = useRoutes([
@@ -17,6 +18,10 @@ function App() {
     {
       path: "/privacy-policy",
       element: <PrivacyPollicy />,
+    },
+    {
+      path: "/category/:categoryId",
+      element: <CategoryDetails />,
     },
   ]);
 

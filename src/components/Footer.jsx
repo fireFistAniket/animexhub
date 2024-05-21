@@ -44,7 +44,9 @@ const Footer = () => {
               Copyright &copy; 2024 AnimeXhuB. All rights reserved.
             </p>
             <div className='flex items-center gap-[0.5vmax] text-neutral-400 text-[1.3vmax] capitalize'>
-              <Link to='/privacy-policy'>privacy policy</Link>
+              <Link to='/privacy-policy' className='hover:text-[--primary]'>
+                privacy policy
+              </Link>
               <p>|</p>
               <p>terms of use</p>
               <p>|</p>
