@@ -369,36 +369,81 @@ const Home = () => {
           </motion.div>
         </div>
       </div>
-      {/* <div className="flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]">
+      <div className="flex flex-col items-center gap-[4vmin] mx-[3vmax] my-[3vmin]">
         <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
-          List of some top trending manga this week.
+          List of some comments.
         </h1>
         <div className="relative group">
           <div
-            className="flex items-center gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
+            className="flex items-stretch gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
             ref={reactionScrollContainer}
           >
             {isLoading ? (
               <Loader />
             ) : (
-              <>
-                {reactions?.included?.map(
-                  (item) =>
-                    item.type === "users" && (
-                      <div key={item.id}>{item.attributes.name}</div>
-                    )
-                )}
-                {reactions?.data?.slice(0, 10).map((reaction) => (
-                  <div
-                    className="flex items-stretch relative flex-shrink flex-grow basis-[25vmax] bg-black bg-opacity-50"
-                    key={reaction.id}
-                  >
-                    <p className="text-[1.5vmax] font-bold  text-neutral-100 text-center w-full">
-                      {reaction.attributes.reaction}
-                    </p>
-                  </div>
-                ))}
-              </>
+              reactions?.data?.slice(0, 10).map((reaction) => (
+                <div
+                  className="flex flex-col items-stretch relative flex-shrink flex-grow basis-[35vmax] px-[2vmax] py-[2vmin] bg-black bg-opacity-50 rounded-xl gap-[3vmin]"
+                  key={reaction.id}
+                >
+                  {reactions?.included?.map(
+                    (item) =>
+                      item.type === "users" &&
+                      item.id === reaction.relationships.user.data.id && (
+                        <div
+                          key={item.id}
+                          className="flex items-center gap-[1vmin]"
+                        >
+                          <img
+                            src={item.attributes.avatar.original}
+                            alt="user avatar"
+                            className="max-w-[3vmax] max-h-[3vmax] rounded-full"
+                          />
+                          <h2 className="text-[1.3vmax] font-semibold text-neutral-100">
+                            {item.attributes.name}
+                          </h2>
+                        </div>
+                      )
+                  )}
+                  <p className="text-[1.5vmax] font-bold text-neutral-100 min-w-[25vmax]">
+                    {reaction.attributes.reaction}
+                  </p>
+                  {reactions?.included?.map(
+                    (item) =>
+                      item.type === "manga" &&
+                      reaction.relationships.manga.data &&
+                      item.id === reaction.relationships.manga.data.id && (
+                        <div
+                          key={item.id}
+                          className="flex items-center gap-[1vmin]"
+                        >
+                          <h2 className="text-[1.3vmax] font-semibold text-neutral-100">
+                            Manga name:{" "}
+                            {item.attributes.titles.en ||
+                              item.attributes.titles.en_jp}
+                          </h2>
+                        </div>
+                      )
+                  )}
+                  {reactions?.included?.map(
+                    (item) =>
+                      item.type === "anime" &&
+                      reaction.relationships.anime.data &&
+                      item.id === reaction.relationships.anime.data.id && (
+                        <div
+                          key={item.id}
+                          className="flex items-center gap-[1vmin]"
+                        >
+                          <h2 className="text-[1.3vmax] font-semibold text-neutral-100">
+                            Anime name:{" "}
+                            {item.attributes.titles.en ||
+                              item.attributes.titles.en_jp}
+                          </h2>
+                        </div>
+                      )
+                  )}
+                </div>
+              ))
             )}
           </div>
           <button
@@ -416,13 +461,7 @@ const Home = () => {
             <FaChevronRight className="opacity-60 hover:opacity-100" />
           </button>
         </div>
-        <button
-          type="button"
-          className="text-[1.2vmax] capitalize border hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#f97316,0_0_15px_#f97316,0_0_30px_#f97316] transition duration-300 bg-orange-500 text-neutral-100 rounded-xl border-orange-500 px-[2vmax] py-[2vmin] self-center"
-        >
-          explore all
-        </button>
-      </div> */}
+      </div>
       <motion.div
         className="bg-[url('/newsletter-bg.jpg')] bg-no-repeat bg-center"
         initial={{ backgroundSize: "0%" }}
