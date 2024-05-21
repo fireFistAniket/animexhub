@@ -491,7 +491,7 @@ const Home = () => {
         <div className='grid grid-cols-6 flex-wrap justify-items-stretch gap-[4vmin] my-[4vmin]'>
           {categories?.data?.map((cat) => (
             <Link
-              to={`/category/${cat.id}`}
+              to={`/category/${cat.attributes.slug}`}
               className='even:text-fuchsia-700 odd:text-indigo-800 border-2 px-[1vmin] py-[0.5vmin] rounded-md odd:border-fuchsia-700 even:border-indigo-800 shadow cursor-pointer'
               key={cat.id}
             >

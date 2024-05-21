@@ -6,52 +6,65 @@ import Loader from "../components/Loader";
 const CategoryDetails = () => {
   const { categoryId } = useParams();
   const [categoryDetails, setCategoryDetails] = useState({});
+  const [categoriesAnime, setCategoriesAnime] = useState([]);
 
-  const { data, error, loading } = useFetch(
-    `/categories/${categoryId}?include=anime&fields[anime]=posterImage,titles`
-  );
+  const {
+    data: categoryDetailsData,
+    error: categoryDetailsError,
+    loading: categoryDetailsLoading,
+  } = useFetch(`/categories?filter[slug]=${categoryId}`);
+
+  const {
+    data: categoryAnimeData,
+    error: categoryAnimeError,
+    loading: categoryAnimeLoading,
+  } = useFetch(`/anime?filter[categories]=${categoryId}`);
 
   useEffect(() => {
-    if (!data) {
+    if (!categoryDetailsData || !categoryAnimeData) {
       return;
     }
-    setCategoryDetails(data);
-  }, [data]);
+    setCategoryDetails(categoryDetailsData.data[0]);
+    setCategoriesAnime(categoryAnimeData.data);
+  }, [
+    categoryDetailsLoading,
+    categoryDetailsData,
+    categoryAnimeData,
+    categoryAnimeLoading,
+  ]);
 
-  if (loading) {
+  if (categoryDetailsLoading) {
     return <Loader />;
   }
 
   return (
-    <main className='flex flex-col items-center justify-center gap-[4vmin]'>
-      <h1 className='text-[2.5vmax] font-semibold text-neutral-900'>
+    <main className="flex flex-col items-stretch justify-center gap-[4vmin] mx-[3vmax]">
+      <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
         Category name:{" "}
-        <span className='font-bold'>
-          {categoryDetails.data?.attributes?.title}
-        </span>
+        <span className="font-bold">{categoryDetails.attributes?.title}</span>
       </h1>
-      <div className='flex flex-col items-center mx-[3vmax] gap-[2vmin]'>
-        <p className='text-center text-[1.8vmax] font-medium text-neutral-900'>
-          Category description: {categoryDetails.data?.attributes?.description}
+      <div className="flex flex-col items-center gap-[4vmin]">
+        <p className="text-[1.8vmax] font-medium text-neutral-900">
+          Category description: {categoryDetails.attributes?.description}
         </p>
-        <div className='flex flex-col items-start gap-[2vmin]'>
-          <h3 className='text-[1.5vmax] font-medium'>
-            Animes based on category {categoryDetails.data?.attributes?.title}
+        <div className="flex flex-col items-start gap-[2vmin]">
+          <h3 className="text-[1.7vmax] font-medium text-neutral-900 underline">
+            Animes based on category {categoryDetails?.attributes?.title}
           </h3>
-          <div className='flex justify-center flex-wrap gap-[3vmin]'>
-            {categoryDetails?.included?.map((anime) => (
+          <div className="flex justify-center flex-wrap gap-[3vmin]">
+            {categoriesAnime?.map((anime) => (
               <div
-                className='flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]'
+                className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
                 key={anime.id}
               >
                 <img
                   src={anime.attributes.posterImage?.original}
-                  alt='anime cover'
+                  alt="anime cover"
                   width={500}
                   height={500}
-                  className='w-full h-auto inline-block rounded-lg'
+                  className="w-full h-auto inline-block rounded-lg"
                 />
-                <p className='text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full'>
+                <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
                   {anime.attributes.titles.en || anime.attributes.titles.en_jp}
                 </p>
               </div>
