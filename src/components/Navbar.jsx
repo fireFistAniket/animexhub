@@ -36,10 +36,13 @@ const Navbar = () => {
               <p>trending</p>
               <FaChevronDown className="text-[0.8vmax]" />
             </div>
-            <div className="absolute top-full -left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100 hidden group-hover:flex delay-150 transition duration-300 ease-in-out border border-[--primary] px-[1vmax] py-[1vmin] rounded-lg rounded-tr-none shadow flex-col gap-[1.2vmin] bg-white bg-opacity-65">
-              <p className="whitespace-nowrap hover:text-[--primary]">
+            <div className="absolute top-full -left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100 hidden group-hover:flex delay-150 transition duration-300 ease-in-out border border-[--primary] px-[1vmax] py-[1vmin] rounded-lg rounded-tr-none shadow flex-col gap-[1.2vmin] bg-white bg-opacity-65 z-10">
+              <Link
+                to="/trending-anime"
+                className="whitespace-nowrap hover:text-[--primary]"
+              >
                 trending anime
-              </p>
+              </Link>
               <p className="whitespace-nowrap hover:text-[--primary]">
                 trending manga
               </p>

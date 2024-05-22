@@ -7,6 +7,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import PrivacyPollicy from "./pages/PrivacyPolicy";
 import Home from "./pages/Home";
 import CategoryDetails from "./pages/CategoryDetails";
+import TrendingAnime from "./pages/TrendingAnime";
 
 function App() {
   const element = useRoutes([
@@ -23,6 +24,10 @@ function App() {
       path: "/category/:categoryId",
       element: <CategoryDetails />,
     },
+    {
+      path: "/trending-anime",
+      element: <TrendingAnime />,
+    },
   ]);
 
   const location = useLocation();
@@ -33,7 +38,7 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence mode="wait" initial={false}>
         {React.cloneElement(element, { key: location.pathname })}
       </AnimatePresence>
       <Footer />
