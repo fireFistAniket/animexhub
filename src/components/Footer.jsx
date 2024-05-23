@@ -10,7 +10,7 @@ const Footer = () => {
       <div className='bg-black bg-opacity-75 flex justify-between pr-[2vmax]'>
         <div className='px-[1.5vmax] py-[5vmin] flex flex-col items-start gap-[1.5vmax]'>
           <div className='flex items-center gap-[2vmax]'>
-            <div className='flex items-center gap-[1.5vmax]'>
+            <Link to='/' className='flex items-center gap-[1.5vmax]'>
               <img
                 src='/animexhub/logo.png'
                 alt='AnimeXhuB'
@@ -26,7 +26,7 @@ const Footer = () => {
                   アニメックスハブ
                 </p>
               </div>
-            </div>
+            </Link>
             <ul className='flex items-center gap-[4vmin]'>
               <li className='capitalize font-medium text-[1.3vmax] relative cursor-pointer hover:text-[--primary] text-neutral-400'>
                 anime
