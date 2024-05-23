@@ -25,7 +25,7 @@ function App() {
       element: <CategoryDetails />,
     },
     {
-      path: "/trending-anime",
+      path: "/trending",
       element: <TrendingAnime />,
     },
   ]);

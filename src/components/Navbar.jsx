@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
+  const [isOn, setIsOn] = useState(false);
+  const spring = {
+    type: "spring",
+    stiffness: 700,
+    damping: 30,
+  };
+
+  const toggleSwitch = () => setIsOn(!isOn);
   return (
     <nav className='flex items-center bg-[url("/nav-footer-bg.png")] bg-no-repeat bg-cover bg-center'>
       <div className="flex items-center justify-between bg-black bg-opacity-70 px-[1.5vmax] py-[1.5vmin] w-full">
@@ -25,31 +34,69 @@ const Navbar = () => {
           </div>
         </Link>
         <ul className="flex items-start gap-[4vmin]">
-          <li className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400">
-            anime
-          </li>
-          <li className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400">
-            manga
-          </li>
+          <Link
+            to="/trending"
+            className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400"
+          >
+            trending
+          </Link>
           <li className="capitalize font-medium text-[1.3vmax] relative group">
             <div className="group-hover:text-[--primary] flex flex-col items-center cursor-pointer text-neutral-400">
-              <p>trending</p>
+              <p>Anime</p>
               <FaChevronDown className="text-[0.8vmax]" />
             </div>
             <div className="absolute top-full -left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100 hidden group-hover:flex delay-150 transition duration-300 ease-in-out border border-[--primary] px-[1vmax] py-[1vmin] rounded-lg rounded-tr-none shadow flex-col gap-[1.2vmin] bg-white bg-opacity-65 z-10">
-              <Link
-                to="/trending-anime"
-                className="whitespace-nowrap hover:text-[--primary]"
-              >
-                trending anime
-              </Link>
               <p className="whitespace-nowrap hover:text-[--primary]">
-                trending manga
+                ongoing anime
+              </p>
+              <p className="whitespace-nowrap hover:text-[--primary]">
+                complete anime
+              </p>
+              <p className="whitespace-nowrap hover:text-[--primary]">
+                upcoming anime
+              </p>
+            </div>
+          </li>
+          <li className="capitalize font-medium text-[1.3vmax] relative group">
+            <div className="group-hover:text-[--primary] flex flex-col items-center cursor-pointer text-neutral-400">
+              <p>manga</p>
+              <FaChevronDown className="text-[0.8vmax]" />
+            </div>
+            <div className="absolute top-full -left-0 -translate-x-1/2 opacity-0 group-hover:opacity-100 hidden group-hover:flex delay-150 transition duration-300 ease-in-out border border-[--primary] px-[1vmax] py-[1vmin] rounded-lg rounded-tr-none shadow flex-col gap-[1.2vmin] bg-white bg-opacity-65 z-10">
+              <p className="whitespace-nowrap hover:text-[--primary]">
+                ongoing manga
+              </p>
+              <p className="whitespace-nowrap hover:text-[--primary]">
+                complete manga
+              </p>
+              <p className="whitespace-nowrap hover:text-[--primary]">
+                upcoming manga
               </p>
             </div>
           </li>
         </ul>
         <div className="flex items-center border border-neutral-400 rounded-2xl px-[1vmax] py-[1vmin] gap-[2vmin] hover:bg-white focus-within:bg-white hover:bg-opacity-65 focus-within:bg-opacity-65 focus-within:border-0 group shadow-inner hover:border-0">
+          <div className="flex items-center gap-2">
+            <p className="uppercase font-bold text-neutral-600 group-hover:text-neutral-900 group-focus-within:text-neutral-900">
+              a
+            </p>
+            <div
+              className={`w-[3vmax] h-[3.5vmin] bg-white bg-opacity-40 flex items-center rounded-full p-2 cursor-pointer ${
+                isOn ? "justify-end" : "justify-start"
+              }`}
+              data-isOn={isOn}
+              onClick={toggleSwitch}
+            >
+              <motion.div
+                className="w-[2vmin] h-[2vmin] bg-white rounded-full"
+                layout
+                transition={spring}
+              />
+            </div>
+            <p className="uppercase font-bold text-neutral-600 group-hover:text-neutral-900 group-focus-within:text-neutral-900">
+              m
+            </p>
+          </div>
           <input
             type="search"
             placeholder="Search your desire anime"
