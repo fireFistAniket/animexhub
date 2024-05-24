@@ -15,6 +15,7 @@ import UpcomingManga from "./pages/UpcomingManga";
 import CompletedManga from "./pages/CompletedManga";
 import OngoingManga from "./pages/OngoingManga";
 import Characters from "./pages/Chracters";
+import Results from "./pages/Results";
 
 function App() {
   const element = useRoutes([
@@ -63,6 +64,10 @@ function App() {
       path: "/characters",
       element: <Characters />,
     },
+    {
+      path: "/results",
+      element: <Results />,
+    },
   ]);
 
   const location = useLocation();
@@ -73,7 +78,7 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence mode='wait' initial={false}>
         {React.cloneElement(element, { key: location.pathname })}
       </AnimatePresence>
       <Footer />
