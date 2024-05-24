@@ -12,6 +12,9 @@ import OngoingAnime from "./pages/OngoingAnime";
 import CompletedAnime from "./pages/CompletedAnime";
 import UpcomingAnime from "./pages/UpcomingAnime";
 import UpcomingManga from "./pages/UpcomingManga";
+import CompletedManga from "./pages/CompletedManga";
+import OngoingManga from "./pages/OngoingManga";
+import Characters from "./pages/Chracters";
 
 function App() {
   const element = useRoutes([
@@ -37,8 +40,16 @@ function App() {
       element: <OngoingAnime />,
     },
     {
+      path: "/ongoing-manga",
+      element: <OngoingManga />,
+    },
+    {
       path: "/completed-anime",
       element: <CompletedAnime />,
+    },
+    {
+      path: "/completed-manga",
+      element: <CompletedManga />,
     },
     {
       path: "/upcoming-anime",
@@ -47,6 +58,10 @@ function App() {
     {
       path: "/upcoming-manga",
       element: <UpcomingManga />,
+    },
+    {
+      path: "/characters",
+      element: <Characters />,
     },
   ]);
 
@@ -58,7 +73,7 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence mode="wait" initial={false}>
         {React.cloneElement(element, { key: location.pathname })}
       </AnimatePresence>
       <Footer />

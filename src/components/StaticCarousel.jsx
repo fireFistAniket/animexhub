@@ -39,42 +39,42 @@ const StaticCarousel = () => {
   }, [page]);
 
   return (
-    <div className='w-full overflow-hidden'>
-      <div className='relative min-h-[80vh]'>
+    <div className="w-full overflow-hidden">
+      <div className="relative min-h-[85vh]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={page}
             custom={direction}
             variants={variants}
-            initial='enter'
-            animate='center'
-            exit='exit'
+            initial="enter"
+            animate="center"
+            exit="exit"
             transition={{
               x: { type: "spring", stiffness: 300, damping: 50 },
             }}
-            className='w-full absolute h-full flex items-center justify-center'
+            className="w-full absolute h-full flex items-center justify-center"
           >
             <img
               src={slides[currentIndex]}
-              alt='anime-cover'
-              className='w-full max-h-[80vh] h-full object-cover'
+              alt="anime-cover"
+              className="w-full max-h-[85vh] h-full object-cover"
             />
           </motion.div>
         </AnimatePresence>
         <button
-          className='absolute top-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.5)] text-white p-2 cursor-pointer left-2 z-10 text-[2.5vmax]'
+          className="absolute top-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.5)] text-white p-2 cursor-pointer left-2 z-10 text-[2.5vmax]"
           onClick={() => paginate(-1)}
         >
           <FaAngleLeft />
         </button>
         <button
-          className='absolute top-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.5)] text-white p-2 cursor-pointer right-2 z-10 text-[2.5vmax]'
+          className="absolute top-1/2 -translate-y-1/2 bg-[rgba(0,0,0,0.5)] text-white p-2 cursor-pointer right-2 z-10 text-[2.5vmax]"
           onClick={() => paginate(1)}
         >
           <FaAngleRight />
         </button>
       </div>
-      <div className='text-center mt-2 relative'>
+      <div className="text-center mt-2 relative">
         {slides.map((slide, index) => (
           <span
             key={slide.id}
