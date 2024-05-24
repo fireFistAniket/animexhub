@@ -1,8 +1,11 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# AnimexhuB
 
-Currently, two official plugins are available:
+AnimeXhuB welcomes visitors with stunning anime imagery, offering a captivating glimpse into the world of anime. Featuring vibrant colors and dynamic designs, it sets the stage for an immersive anime experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Acknowledgements
+
+ - [Frontend CLI](https://vitejs.dev/)
+ - [Backend API](https://kitsu.docs.apiary.io/#introduction)
+
