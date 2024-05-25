@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import Loader from "../components/Loader";
 import Carousel from "../components/Carousel";
@@ -64,7 +64,8 @@ const CategoryDetails = () => {
             </h3>
             <div className="flex justify-center flex-wrap gap-[3vmin]">
               {categoriesAnime?.map((anime) => (
-                <div
+                <Link
+                  to={`/${anime.type}-details/${anime.id}`}
                   className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
                   key={anime.id}
                 >
@@ -79,7 +80,7 @@ const CategoryDetails = () => {
                     {anime.attributes.titles.en ||
                       anime.attributes.titles.en_jp}
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -97,7 +98,8 @@ const CategoryDetails = () => {
             </h3>
             <div className="flex justify-center flex-wrap gap-[3vmin]">
               {categoriesManga?.map((manga) => (
-                <div
+                <Link
+                  to={`/${manga.type}-details/${manga.id}`}
                   className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
                   key={manga.id}
                 >
@@ -112,7 +114,7 @@ const CategoryDetails = () => {
                     {manga.attributes.titles.en ||
                       manga.attributes.titles.en_jp}
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

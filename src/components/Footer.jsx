@@ -57,7 +57,9 @@ const Footer = () => {
                 privacy policy
               </Link>
               <p>|</p>
-              <p>terms of use</p>
+              <Link to="/terms-of-use" className="hover:text-[--primary]">
+                terms of use
+              </Link>
               <p>|</p>
               <p>sitemap</p>
             </div>

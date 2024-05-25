@@ -4,6 +4,7 @@ import useFetch from "../hooks/useFetch";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
+import Itemcard from "../components/Itemcard";
 
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
 const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
@@ -152,22 +153,8 @@ const Home = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              topTrendingAnime?.data?.slice(0, 10).map((animes) => (
-                <div
-                  className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
-                  key={animes.id}
-                >
-                  <img
-                    src={animes.attributes.posterImage?.original}
-                    alt="anime cover"
-                    width={500}
-                    height={500}
-                    className="w-full h-auto inline-block rounded-lg"
-                  />
-                  <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
-                    {animes.attributes.titles.en}
-                  </p>
-                </div>
+              topTrendingAnime?.data?.map((animes) => (
+                <Itemcard item={animes} key={animes.id} />
               ))
             )}
           </div>
@@ -295,22 +282,8 @@ const Home = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              topTrendingManga?.data?.slice(0, 10).map((manga) => (
-                <div
-                  className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
-                  key={manga.id}
-                >
-                  <img
-                    src={manga.attributes.posterImage?.original}
-                    alt="anime cover"
-                    width={500}
-                    height={500}
-                    className="w-full h-auto inline-block rounded-lg"
-                  />
-                  <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
-                    {manga.attributes.titles.en}
-                  </p>
-                </div>
+              topTrendingManga?.data?.map((manga) => (
+                <Itemcard item={manga} key={manga.id} />
               ))
             )}
           </div>

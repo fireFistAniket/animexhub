@@ -16,6 +16,9 @@ import CompletedManga from "./pages/CompletedManga";
 import OngoingManga from "./pages/OngoingManga";
 import Characters from "./pages/Chracters";
 import Results from "./pages/Results";
+import AnimeDetails from "./pages/AnimeDetails";
+import TermsofUse from "./pages/TermsofUse";
+import MangaDetails from "./pages/MangaDetails";
 
 function App() {
   const element = useRoutes([
@@ -27,6 +30,10 @@ function App() {
     {
       path: "/privacy-policy",
       element: <PrivacyPollicy />,
+    },
+    {
+      path: "/terms-of-use",
+      element: <TermsofUse />,
     },
     {
       path: "/category/:categoryId",
@@ -68,6 +75,14 @@ function App() {
       path: "/results",
       element: <Results />,
     },
+    {
+      path: "/anime-details/:animeId",
+      element: <AnimeDetails />,
+    },
+    {
+      path: "/manga-details/:mangaId",
+      element: <MangaDetails />,
+    },
   ]);
 
   const location = useLocation();
@@ -78,7 +93,7 @@ function App() {
     <>
       <ScrollToTop />
       <Navbar />
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence mode="wait" initial={false}>
         {React.cloneElement(element, { key: location.pathname })}
       </AnimatePresence>
       <Footer />

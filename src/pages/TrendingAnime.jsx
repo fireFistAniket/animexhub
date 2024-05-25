@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import Loader from "../components/Loader";
 import Carousel from "../components/Carousel";
+import Itemcard from "../components/Itemcard";
 
 const TrendingAnime = () => {
   const [trendingAnime, setTrendingAnime] = useState([]);
@@ -72,21 +73,7 @@ const TrendingAnime = () => {
           </h3>
           <div className="flex justify-center flex-wrap gap-[3vmin]">
             {trendingManga?.map((manga) => (
-              <div
-                className="flex items-stretch relative flex-shrink flex-grow basis-[15vmax] min-w-[15vmax]"
-                key={manga.id}
-              >
-                <img
-                  src={manga.attributes.posterImage?.original}
-                  alt="anime cover"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto inline-block rounded-lg"
-                />
-                <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
-                  {manga.attributes.titles.en || manga.attributes.titles.en_jp}
-                </p>
-              </div>
+              <Itemcard item={manga} key={manga.id} />
             ))}
           </div>
         </div>
