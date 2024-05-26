@@ -73,7 +73,7 @@ const Navbar = () => {
             </p>
           </div>
         </Link>
-        <ul className="flex items-start gap-[4vmin]">
+        <ul className="flex items-start gap-[1.5vmin] 2xl:gap-[3vmin]">
           <Link
             to="/trending"
             className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400"
@@ -85,6 +85,12 @@ const Navbar = () => {
             className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400"
           >
             characters
+          </Link>
+          <Link
+            to="/what-this-anime"
+            className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400"
+          >
+            what this anime !
           </Link>
           <li className="capitalize font-medium text-[1.3vmax] relative group">
             <div className="group-hover:text-[--primary] flex flex-col items-center cursor-pointer text-neutral-400">
@@ -152,7 +158,7 @@ const Navbar = () => {
               } bg-no-repeat bg-cover rounded-full`}
             >
               <div
-                className={`w-[4vmax] h-[4.5vmin] relative bg-white bg-opacity-15 flex items-center rounded-full p-2 cursor-pointer ${
+                className={`w-[5vmax] 2xl:w-[4vmax] h-[3.5vmin] 2xl:h-[4.5vmin] relative bg-white bg-opacity-15 flex items-center rounded-full p-2 cursor-pointer ${
                   isOn ? "justify-end" : "justify-start"
                 }`}
                 dataison={isOn}
@@ -171,7 +177,7 @@ const Navbar = () => {
             value={searchQuery}
             onChange={handelSearch}
             placeholder={`Search your desire ${isOn ? "anime" : "manga"}`}
-            className="placeholder:overflow-visible bg-transparent placeholder:text-neutral-600 group-hover:placeholder:text-neutral-700 group-focus-within:placeholder:text-neutral-700 group-hover:text-neutral-700 group-focus-within:text-neutral-700 focus:outline-none text-neutral-400 min-w-[12vmax]"
+            className="placeholder:overflow-visible bg-transparent placeholder:text-neutral-600 group-hover:placeholder:text-neutral-700 group-focus-within:placeholder:text-neutral-700 group-hover:text-neutral-700 group-focus-within:text-neutral-700 focus:outline-none text-neutral-400 min-w-[17vmax]"
           />
           <button
             type="submit"

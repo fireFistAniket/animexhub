@@ -61,7 +61,9 @@ const Footer = () => {
                 terms of use
               </Link>
               <p>|</p>
-              <p>sitemap</p>
+              <Link to="/what-this-anime" className="hover:text-[--primary]">
+                what this anime !
+              </Link>
             </div>
           </div>
         </div>

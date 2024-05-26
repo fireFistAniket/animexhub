@@ -137,7 +137,7 @@ const Home = () => {
           <img
             src="/animexhub/about-us-cover.jpg"
             alt="about us"
-            className="max-h-[80vmin] shadow-xl rounded-lg"
+            className="max-h-[60vmin] 2xl:max-h-[80vmin] shadow-xl rounded-lg"
           />
         </motion.div>
       </div>
@@ -208,7 +208,7 @@ const Home = () => {
               <img
                 src="/animexhub/what-can-you-expect-cover1.jpg"
                 alt="what-can-you-expect-cover"
-                className="max-h-[70vmin] shadow-xl rounded-lg"
+                className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
               />
             </motion.div>
           </div>
@@ -229,7 +229,7 @@ const Home = () => {
               <img
                 src="/animexhub/what-can-you-expect-cover2.jpg"
                 alt="what-can-you-expect-cover"
-                className="max-h-[70vmin] shadow-xl rounded-lg"
+                className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
               />
             </motion.div>
             <p className="text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]">
@@ -264,7 +264,7 @@ const Home = () => {
               <img
                 src="/animexhub/what-can-you-expect-cover3.jpg"
                 alt="what-can-you-expect-cover"
-                className="max-h-[70vmin] shadow-xl rounded-lg"
+                className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
               />
             </motion.div>
           </div>
@@ -356,7 +356,7 @@ const Home = () => {
             <img
               src="/animexhub/why-us.png"
               alt="what-can-you-expect-cover"
-              className="max-h-[70vmin] shadow-xl rounded-lg"
+              className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
             />
           </motion.div>
         </div>
@@ -461,14 +461,14 @@ const Home = () => {
         <h2 className="text-[1.8vmax] font-medium text-neutral-900">
           You can find animes &amp; mangas based on your choice!
         </h2>
-        <div className="grid grid-cols-6 flex-wrap justify-items-stretch gap-[4vmin] my-[4vmin]">
+        <div className="grid grid-cols-5 2xl:grid-cols-6 justify-items-stretch gap-[4vmin] my-[4vmin]">
           {categories?.data?.map((cat) => (
             <Link
               to={`/category/${cat.attributes.slug}`}
               className="even:text-fuchsia-700 odd:text-indigo-800 border-2 px-[1vmin] py-[0.5vmin] rounded-md odd:border-fuchsia-700 even:border-indigo-800 shadow cursor-pointer"
               key={cat.id}
             >
-              <p className="text-[2.8vmin] font-semibold text-center">
+              <p className="text-[2.8vmin] font-semibold text-center line-clamp-1">
                 {cat.attributes.title}
               </p>
             </Link>

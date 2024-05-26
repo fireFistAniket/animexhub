@@ -19,6 +19,7 @@ import Results from "./pages/Results";
 import AnimeDetails from "./pages/AnimeDetails";
 import TermsofUse from "./pages/TermsofUse";
 import MangaDetails from "./pages/MangaDetails";
+import WhatTheAnime from "./pages/WhatTheAnime";
 
 function App() {
   const element = useRoutes([
@@ -82,6 +83,10 @@ function App() {
     {
       path: "/manga-details/:mangaId",
       element: <MangaDetails />,
+    },
+    {
+      path: "/what-this-anime",
+      element: <WhatTheAnime />,
     },
   ]);
 
