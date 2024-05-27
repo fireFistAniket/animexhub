@@ -40,7 +40,7 @@ const StaticCarousel = () => {
 
   return (
     <div className="w-full overflow-hidden">
-      <div className="relative min-h-[85vh]">
+      <div className="relative min-h-[45vh] md:min-h-[65vh] xl:min-h-[85vh]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={page}

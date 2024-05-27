@@ -67,7 +67,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="hidden sm:flex items-center">
           <Link
             to="https://www.instagram.com/code_n_creativity?igsh=MWRzcWVyMmIxMnIyZw%3D%3D&utm_source=qr"
             target="_blank"

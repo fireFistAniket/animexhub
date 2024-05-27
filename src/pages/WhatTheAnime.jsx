@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import ReactPlayer from "react-player";
@@ -8,6 +8,7 @@ const WhatTheAnime = () => {
   const [image, setImage] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [maxWidth, setMaxWidth] = useState("45vmax");
 
   const onDrop = useCallback(async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -37,10 +38,29 @@ const WhatTheAnime = () => {
     },
   });
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 640) {
+        setMaxWidth("65vmax");
+      } else {
+        setMaxWidth("45vmax");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Initial check
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <main className="flex flex-col items-center gap-[2vh] my-[3vmin]">
       <h1 className="capitalize text-[2.6vmax] font-bold">what this anime!</h1>
-      <p className="text-[1.2vmax] max-w-[65vw] text-center">
+      <p className="text-[1.2vmax] max-w-[80vw] sm:max-w-[65vw] text-center">
         Discover your favorite anime moments with AnimeXhuB&apos;s scene-based
         search feature. Simply upload an image or describe a scene, and our
         advanced AI will find the exact episode and timestamp from a vast
@@ -53,7 +73,7 @@ const WhatTheAnime = () => {
       <div className="flex items-center my-[3vmin]">
         <div
           {...getRootProps()}
-          className="min-w-[45vw] min-h-[45vh] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer"
+          className="min-w-[70vw] lg:min-w-[45vw] min-h-[35vh] lg:min-h-[45vh] border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center cursor-pointer"
         >
           <input {...getInputProps()} />
           {!image ? (
@@ -81,14 +101,14 @@ const WhatTheAnime = () => {
           ) : (
             searchResults.map((item, index) => (
               <div key={index}>
-                <ReactPlayer url={item.video} controls />
-                <p className="text-[2vmin] font-semibold">
+                <ReactPlayer url={item.video} controls style={{ maxWidth }} />
+                <p className="text-[4vmin] sm:text-[2vmin] font-semibold">
                   Anime name: {item.anilist.title.english}
                 </p>
-                <p className="text-[1.6vmin] font-medium">
+                <p className="text-[3vmin] sm:text-[1.6vmin] font-medium">
                   Episode number: {item.episode}
                 </p>
-                <p className="text-[1.6vmin] font-medium">
+                <p className="text-[3vmin] sm:text-[1.6vmin] font-medium">
                   Similarity: {Math.round(item.similarity * 100)} %
                 </p>
               </div>

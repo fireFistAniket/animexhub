@@ -14,7 +14,7 @@ const Itemcard = ({ item }) => {
         height={500}
         className="w-full h-auto inline-block rounded-lg"
       />
-      <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full">
+      <p className="text-[1.5vmax] font-bold absolute bottom-0 bg-black bg-opacity-50 text-neutral-100 text-center w-full line-clamp-3">
         {item.attributes.titles.en || item.attributes.titles.en_jp}
       </p>
     </Link>

@@ -65,7 +65,7 @@ const MangaDetails = () => {
           "/animexhub/nav-footer-bg.png"
         }
         alt="anime-cover"
-        className="w-full max-h-[70vh] object-cover"
+        className="w-full max-h-[65vh] xl:max-h-[70vh] object-cover"
       />
       <div className="flex gap-[2vmax] mx-[3vmax]">
         <img

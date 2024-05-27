@@ -88,9 +88,9 @@ const Home = () => {
 
   return (
     <main className="flex flex-col justify-center gap-[4vmax]">
-      <div className="bg-[url('/hero-header-bg.png')] bg-no-repeat bg-cover bg-center min-h-[80vh] flex items-center justify-center">
+      <div className="bg-[url('/hero-header-bg.png')] bg-no-repeat bg-cover bg-center min-h-[45vh] md:min-h-[65vh] xl:min-h-[80vh] flex items-center justify-center">
         <motion.div
-          className="flex flex-col items-center gap-[4vmin] max-w-[60vmax] bg-white bg-opacity-40 px-[2vmax] py-[2vmin] backdrop-blur-sm rounded-lg shadow"
+          className="flex flex-col items-center gap-[4vmin] max-w-[45vmax] sm:max-w-[60vmax] bg-white bg-opacity-40 px-[2vmax] py-[2vmin] backdrop-blur-sm rounded-lg shadow"
           initial={{ scale: 0.2 }}
           transition={{ duration: 1 }}
           whileInView={{ scale: 1 }}
@@ -107,7 +107,7 @@ const Home = () => {
         </motion.div>
       </div>
       <div className="flex items-center justify-center mx-[3vmax] my-[3vmin] gap-[4vmin]">
-        <div className="flex flex-col items-center gap-[4vmin] max-w-[55vmax]">
+        <div className="flex flex-col items-center gap-[4vmin] max-w-[45vmax] md:max-w-[55vmax]">
           <h1 className="text-[2.5vmax] font-semibold text-neutral-900">
             What is <span className="font-bold">AnimeXhub</span>?
           </h1>
@@ -130,6 +130,7 @@ const Home = () => {
           }
           transition={{ duration: 1 }}
           viewport={{ once: true }}
+          className="hidden sm:block"
           onViewportEnter={() =>
             setIsInView((prev) => ({ ...prev, aboutus: true }))
           }
@@ -147,7 +148,7 @@ const Home = () => {
         </h1>
         <div className="relative group">
           <div
-            className="flex items-stretch gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
+            className="flex items-stretch gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[75vmax] lg:max-w-[85vmax] scroll-smooth"
             ref={animeScrollContainer}
           >
             {isLoading ? (
@@ -201,6 +202,7 @@ const Home = () => {
               }
               transition={{ duration: 1 }}
               viewport={{ once: true }}
+              className="hidden sm:block"
               onViewportEnter={() =>
                 setIsInView((prev) => ({ ...prev, expect1: true }))
               }
@@ -208,7 +210,7 @@ const Home = () => {
               <img
                 src="/animexhub/what-can-you-expect-cover1.jpg"
                 alt="what-can-you-expect-cover"
-                className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
+                className="max-h-[35vmin] lg:max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
               />
             </motion.div>
           </div>
@@ -222,6 +224,7 @@ const Home = () => {
               }
               transition={{ duration: 1 }}
               viewport={{ once: true }}
+              className="hidden sm:block"
               onViewportEnter={() =>
                 setIsInView((prev) => ({ ...prev, expect2: true }))
               }
@@ -229,7 +232,7 @@ const Home = () => {
               <img
                 src="/animexhub/what-can-you-expect-cover2.jpg"
                 alt="what-can-you-expect-cover"
-                className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
+                className="max-h-[35vmin] lg:max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
               />
             </motion.div>
             <p className="text-center text-[1.8vmax] font-medium text-neutral-900 max-w-[55vmax]">
@@ -250,6 +253,7 @@ const Home = () => {
             </p>
             <motion.div
               initial={false}
+              className="hidden sm:block"
               animate={
                 isInView.expect3
                   ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
@@ -264,7 +268,7 @@ const Home = () => {
               <img
                 src="/animexhub/what-can-you-expect-cover3.jpg"
                 alt="what-can-you-expect-cover"
-                className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
+                className="max-h-[35vmin] lg:max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
               />
             </motion.div>
           </div>
@@ -276,7 +280,7 @@ const Home = () => {
         </h1>
         <div className="relative group">
           <div
-            className="flex items-stretch gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
+            className="flex items-stretch gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[75vmax] lg:max-w-[85vmax] scroll-smooth"
             ref={mangaScrollContainer}
           >
             {isLoading ? (
@@ -315,26 +319,26 @@ const Home = () => {
         </h1>
         <div className="flex items-center">
           <div className="flex items-start flex-col gap-[2vmin]">
-            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+            <p className="text-[1.4vmax] font-medium text-neutral-900 sm:max-w-[45vmax] md:max-w-[55vmax]">
               AnimeXhub utilizes the powerful Kitsu API to provide a vast and
               constantly updated library of anime titles. Our extensive
               collection ensures you&apos;ll always find something new and
               exciting to watch.
             </p>
-            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+            <p className="text-[1.4vmax] font-medium text-neutral-900 sm:max-w-[45vmax] md:max-w-[55vmax]">
               We&apos;ve organized our content to be visually appealing and easy
               to navigate. With intuitive categories, advanced search options,
               and personalized recommendations, finding your next favorite anime
               has never been easier. Our clean, modern design enhances your
               browsing experience.
             </p>
-            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+            <p className="text-[1.4vmax] font-medium text-neutral-900 sm:max-w-[45vmax] md:max-w-[55vmax]">
               Each anime title on AnimeXhub comes with a detailed profile,
               including synopses, genre classifications, episode guides, and
               user reviews. This wealth of information helps you make informed
               decisions about what to watch next.
             </p>
-            <p className="text-[1.4vmax] font-medium text-neutral-900 max-w-[55vmax]">
+            <p className="text-[1.4vmax] font-medium text-neutral-900 sm:max-w-[45vmax] md:max-w-[55vmax]">
               We&apos;re committed to providing the best possible experience for
               our users. That&apos;s why we continuously update our platform
               with new features, improvements, and the latest anime releases.
@@ -349,6 +353,7 @@ const Home = () => {
             }
             transition={{ duration: 1 }}
             viewport={{ once: true }}
+            className="hidden sm:block"
             onViewportEnter={() =>
               setIsInView((prev) => ({ ...prev, whyUs: true }))
             }
@@ -356,7 +361,7 @@ const Home = () => {
             <img
               src="/animexhub/why-us.png"
               alt="what-can-you-expect-cover"
-              className="max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
+              className="max-h-[35vmin] lg:max-h-[60vmin] 2xl:max-h-[70vmin] shadow-xl rounded-lg"
             />
           </motion.div>
         </div>
@@ -367,7 +372,7 @@ const Home = () => {
         </h1>
         <div className="relative group">
           <div
-            className="flex items-stretch gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[65vmax] lg:max-w-[85vmax] scroll-smooth"
+            className="flex items-stretch gap-[2vmax] overflow-hidden no-scrollbar overflow-x-scroll max-w-[45vmax] sm:max-w-[75vmax] lg:max-w-[85vmax] scroll-smooth"
             ref={reactionScrollContainer}
           >
             {isLoading ? (
@@ -461,11 +466,11 @@ const Home = () => {
         <h2 className="text-[1.8vmax] font-medium text-neutral-900">
           You can find animes &amp; mangas based on your choice!
         </h2>
-        <div className="grid grid-cols-5 2xl:grid-cols-6 justify-items-stretch gap-[4vmin] my-[4vmin]">
+        <div className="flex flex-wrap justify-center gap-[4vmin] my-[4vmin] max-w-[75vmax]">
           {categories?.data?.map((cat) => (
             <Link
               to={`/category/${cat.attributes.slug}`}
-              className="even:text-fuchsia-700 odd:text-indigo-800 border-2 px-[1vmin] py-[0.5vmin] rounded-md odd:border-fuchsia-700 even:border-indigo-800 shadow cursor-pointer"
+              className="even:text-fuchsia-700 odd:text-indigo-800 border-2 px-[1vmin] py-[0.5vmin] rounded-md odd:border-fuchsia-700 even:border-indigo-800 shadow cursor-pointer flex-grow flex-shrink basis-[15vmin]"
               key={cat.id}
             >
               <p className="text-[2.8vmin] font-semibold text-center line-clamp-1">
@@ -481,7 +486,7 @@ const Home = () => {
         whileInView={{ backgroundSize: "100%" }}
         transition={{ duration: 1 }}
       >
-        <div className="flex flex-col items-center justify-center bg-black bg-opacity-70 gap-[2vmax] min-h-[40vh]">
+        <div className="flex flex-col items-center justify-center bg-black bg-opacity-70 gap-[2vmax] min-h-[25vh] md:min-h-[40vh]">
           <h1 className="text-[2vmax] font-bold text-neutral-300">
             Not done yet. There is still many more.
           </h1>

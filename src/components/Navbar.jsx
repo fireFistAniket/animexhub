@@ -9,6 +9,11 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchTopic, setSearchTopic] = useState("manga");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsOpen(!isOpen);
+  };
 
   const navigate = useNavigate();
 
@@ -73,7 +78,7 @@ const Navbar = () => {
             </p>
           </div>
         </Link>
-        <ul className="flex items-start gap-[1.5vmin] 2xl:gap-[3vmin]">
+        <ul className="hidden lg:flex items-start gap-[1.5vmin] 2xl:gap-[3vmin]">
           <Link
             to="/trending"
             className="capitalize font-medium text-[1.3vmax] hover:text-[--primary] text-neutral-400"
@@ -146,7 +151,7 @@ const Navbar = () => {
           </li>
         </ul>
         <form
-          className="flex items-center border border-neutral-400 rounded-2xl px-[1vmax] py-[1vmin] gap-[2vmin] hover:bg-white focus-within:bg-white hover:bg-opacity-65 focus-within:bg-opacity-65 focus-within:border-0 group shadow-inner hover:border-0 relative"
+          className="hidden lg:flex items-center border border-neutral-400 rounded-2xl px-[1vmax] py-[1vmin] gap-[2vmin] hover:bg-white focus-within:bg-white hover:bg-opacity-65 focus-within:bg-opacity-65 focus-within:border-0 group shadow-inner hover:border-0 relative"
           onSubmit={handelForword}
         >
           <div className="flex items-center gap-2 relative">
@@ -158,14 +163,14 @@ const Navbar = () => {
               } bg-no-repeat bg-cover rounded-full`}
             >
               <div
-                className={`w-[5vmax] 2xl:w-[4vmax] h-[3.5vmin] 2xl:h-[4.5vmin] relative bg-white bg-opacity-15 flex items-center rounded-full p-2 cursor-pointer ${
+                className={`w-[6vmax] h-[3.3vmin] relative bg-white bg-opacity-15 flex items-center rounded-full p-2 cursor-pointer ${
                   isOn ? "justify-end" : "justify-start"
                 }`}
                 dataison={isOn}
                 onClick={toggleSwitch}
               >
                 <motion.div
-                  className="w-[2vmin] h-[2vmin] bg-[linear-gradient(180deg,_rgba(249,_115,_22,_1)_0%,_rgba(253,_186,_116,_1)_50%,_rgba(249,_115,_22,_1)_100%)] rounded-full shadow-lg"
+                  className="w-[1.7vmin] h-[1.7vmin] bg-[linear-gradient(180deg,_rgba(249,_115,_22,_1)_0%,_rgba(253,_186,_116,_1)_50%,_rgba(249,_115,_22,_1)_100%)] rounded-full shadow-lg"
                   layout
                   transition={spring}
                 />
@@ -213,6 +218,138 @@ const Navbar = () => {
             </div>
           )}
         </form>
+        <div className="flex lg:hidden z-[1100]">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: isOpen ? "35vmax" : 0 }}
+            className="bg-[linear-gradient(180deg,_rgba(249,_115,_22,_1)_0%,_rgba(253,_186,_116,_1)_50%,_rgba(249,_115,_22,_1)_100%)] text-white fixed top-0 right-0 h-full overflow-hidden"
+          >
+            <ul className="p-4">
+              <li className="my-4">
+                <Link
+                  to="/trending"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  trending
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/characters"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  characters
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/what-this-anime"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  what this anime !
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/ongoing-anime"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  ongoing anime
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/completed-anime"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  complete anime
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/upcoming-anime"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  upcoming anime
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/ongoing-manga"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  ongoing manga
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/completed-manga"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  complete manga
+                </Link>
+              </li>
+              <li className="my-4">
+                <Link
+                  to="/upcoming-manga"
+                  onClick={() => setIsOpen(false)}
+                  className="capitalize font-medium text-[2vmax]"
+                >
+                  upcoming manga
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+          <button
+            onClick={toggleNav}
+            className="px-[1.5vmin] py-[1vmin] bg-[#8f83b3] text-white rounded-md focus:outline-none"
+          >
+            <motion.div className="relative w-6 h-6 flex items-center justify-center">
+              <svg width="23" height="23" viewBox="0 0 23 23">
+                <motion.path
+                  fill="transparent"
+                  strokeWidth="3"
+                  stroke="hsl(249, 60%, 20%)"
+                  strokeLinecap="round"
+                  initial={{ d: "M 2 2.5 L 20 2.5" }}
+                  animate={{
+                    d: isOpen ? "M 3 16.5 L 17 2.5" : "M 2 2.5 L 20 2.5",
+                  }}
+                />
+                <motion.path
+                  fill="transparent"
+                  strokeWidth="3"
+                  stroke="hsl(249, 60%, 20%)"
+                  strokeLinecap="round"
+                  d="M 2 9.423 L 20 9.423"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: isOpen ? 0 : 1 }}
+                  transition={{ duration: 0.1 }}
+                />
+                <motion.path
+                  fill="transparent"
+                  strokeWidth="3"
+                  stroke="hsl(249, 60%, 20%)"
+                  strokeLinecap="round"
+                  initial={{ d: "M 2 16.346 L 20 16.346" }}
+                  animate={{
+                    d: isOpen
+                      ? "M 3 2.5 L 17 16.346"
+                      : "M 2 16.346 L 20 16.346",
+                  }}
+                />
+              </svg>
+            </motion.div>
+          </button>
+        </div>
       </div>
     </nav>
   );
